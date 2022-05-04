@@ -32,13 +32,13 @@
             <a href="#">Privacy Policy</a></label>
         </div>
         <div class="form-group">
-          <button type="submit" [disabled]="!signupForm.valid" class="btn btn-success btn-lg btn-block">
+          <button type="submit" [disabled]="!signupForm.valid" class="btn btn-success btn-block mb-2  ">
             Register Now
           </button>
         </div>
       </form>
-      <div class="text-center">
-        Already have an account? <a href="#">Sign in</a>
+      <div class="form-group text-center">
+        Already have an account? <a routerLink="/login">Sign in</a>
       </div>
     </div>
   </div>

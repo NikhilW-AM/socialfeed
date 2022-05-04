@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FetchdataService } from './services/fetchdata.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'socialfeed';
+  isLoggedIn: boolean = false
+
+  constructor(private _fetchdata: FetchdataService) { }
+
 }

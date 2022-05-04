@@ -11,6 +11,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { AvatarModule } from 'ngx-avatar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ModalModule, BsModalService } from 'ngx-bootstrap/modal'
 
 @NgModule({
   declarations: [
@@ -26,9 +27,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule, AvatarModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ModalModule
   ],
-  providers: [],
+  providers: [BsModalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

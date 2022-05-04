@@ -1,1 +1,37 @@
-<p>feeds works!</p>
+<app-header></app-header>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card" *ngFor="let post of posts">
+        <div class="card-header d-flex">
+          <ngx-avatar class="dropdown" size="40" data-bs-toggle="dropdown" name="currentUseruser name"
+            aria-expanded="false">
+          </ngx-avatar>
+          &nbsp;&nbsp;
+          <div class="mt-2">featured</div>
+        </div>
+        <div class="">
+          <img class="card-img-top" src="http://localhost:3000/images/image_1651301591989.png" alt="img" />
+        </div>
+        <div class="card-footer text-muted">
+          <div class="d-flex">
+            <i (click)="toggleColor = !toggleColor" [style.color]="toggleColor ? 'red' : ''"
+              [ngClass]="toggleColor ? '' : 'bi bi-heart'" class="bi bi-heart-fill"></i>
+            <i class="bi bi-chat"></i>
+          </div>
+          <div *ngIf="post.likes.length > 0">
+            <small>like {{ post.likes.length }}</small>
+          </div>
+          <div>
+            <small>
+              <input class="comment" type="text" class="form-control" placeholder="Username" />
+            </small>
+          </div>
+          <div class="comment">
+            <small class="row" *ngFor="let com of post.comments">{{com.comment}}</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

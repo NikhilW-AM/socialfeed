@@ -1,0 +1,37 @@
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+.card {
+  border-radius: 6px;
+  margin-bottom: 30px;
+}
+
+/* .card-img-top {
+  object-fit: cover;
+  padding: 0px;
+} */
+
+/* .container {
+  margin-left: 30%;
+} */
+
+.card-img-top {
+  width: 100%;
+  height: 25vw;
+  object-fit: cover;
+}
+.card-footer i {
+  margin-right: 16px;
+  margin-left: 3px;
+}
+
+.card-footer i {
+  cursor: pointer;
+}
+.form-control {
+  border: 0;
+  box-shadow: none;
+}
+
+.comment {
+  margin-left: 20px;
+}
