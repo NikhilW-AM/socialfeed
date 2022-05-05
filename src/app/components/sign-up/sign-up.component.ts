@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FetchdataService } from 'src/app/services/fetchdata.service';
-
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -9,7 +10,8 @@ import { FetchdataService } from 'src/app/services/fetchdata.service';
 })
 export class SignUpComponent implements OnInit {
 
-  constructor(private _fb: FormBuilder, private _fetchdata: FetchdataService) { }
+  constructor(private _fb: FormBuilder, private _fetchdata: FetchdataService, private toastr: ToastrService, private _router: Router) {
+  }
 
   signupForm!: FormGroup
   ngOnInit(): void {
@@ -24,6 +26,13 @@ export class SignUpComponent implements OnInit {
   onsubmit() {
     this._fetchdata.postSignupData(this.signupForm.value).subscribe(res => {
       console.log(res);
+      if (res) {
+        this.toastr.success('User added successfully');
+        this._router.navigate(['/login'])
+      }
+    }, (err) => {
+      console.log(err);
+
     })
   }
 }

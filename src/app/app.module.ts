@@ -11,7 +11,15 @@ import { HeaderComponent } from './components/header/header.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { AvatarModule } from 'ngx-avatar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ModalModule, BsModalService } from 'ngx-bootstrap/modal'
+import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
+import { AddpostComponent } from './components/addpost/addpost.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
+import {
+  GoogleLoginProvider,
+  FacebookLoginProvider
+} from 'angularx-social-login';
 
 @NgModule({
   declarations: [
@@ -20,7 +28,8 @@ import { ModalModule, BsModalService } from 'ngx-bootstrap/modal'
     SignUpComponent,
     FeedsComponent,
     HeaderComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    AddpostComponent
   ],
   imports: [
     BrowserModule,
@@ -28,9 +37,29 @@ import { ModalModule, BsModalService } from 'ngx-bootstrap/modal'
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    ModalModule
+    ModalModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    SocialLoginModule
   ],
-  providers: [BsModalService],
+  providers: [BsModalService,
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '84105419738-8oluc05m3ucnl6c2ciima85klppl16eo.apps.googleusercontent.com'
+            )
+          }
+        ],
+        onError: (err) => {
+          console.error(err);
+        }
+      } as SocialAuthServiceConfig,
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class FetchdataService {
 
-  private header = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjZiYjdjMzM1YTgwMWIzZTc5ZmI5NDUiLCJpYXQiOjE2NTE2NDcwMjgsImV4cCI6MTY1MTczMzQyOH0.w8-zfghIWzlIxmZmsMyMHlfOjllmmDZI55XjUtrZV5o'
+  private header = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjZiYjdjMzM1YTgwMWIzZTc5ZmI5NDUiLCJpYXQiOjE2NTE3MjQzNjAsImV4cCI6MTY1MTgxMDc2MH0.6wpDx6zwUSCJiep1UmbgF21CJHwd9qhMI8UHTs_i48o'
   constructor(private _http: HttpClient) { }
 
   postSignupData(value: any) {
@@ -18,7 +18,7 @@ export class FetchdataService {
   }
 
   getAllPosts() {
-    return this._http.get('http://localhost:3000?page=1&limit=2', {
+    return this._http.get('http://localhost:3000?page=1&limit=50', {
       headers: {
         Authorization: this.header
       }
@@ -45,5 +45,38 @@ export class FetchdataService {
       return true
     }
     return false
+  }
+
+  likeDislike(postId: any, userId: any) {
+    let data = { userId: userId }
+    return this._http.put(`http://localhost:3000/${postId}/like`, data, {
+      headers: {
+        Authorization: this.header
+      }
+    })
+  }
+
+  uploadPost(postObj: any) {
+    return this._http.post('http://localhost:3000/uploadImage', postObj, {
+      headers: {
+        Authorization: this.header
+      }
+    })
+  }
+
+  postComment(postId: any, commentObj: any) {
+    return this._http.put(`http://localhost:3000/${postId}/comment`, commentObj, {
+      headers: {
+        Authorization: this.header
+      }
+    })
+  }
+
+  changePassword(changePassObj: any, userId: any) {
+    return this._http.put(`http://localhost:3000/changePassword/${userId}`, changePassObj, {
+      headers: {
+        Authorization: this.header
+      }
+    })
   }
 }

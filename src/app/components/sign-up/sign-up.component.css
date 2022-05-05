@@ -1,3 +1,5 @@
+@import "~ngx-toastr/toastr";
+
 .container {
   width: 30%;
 }
